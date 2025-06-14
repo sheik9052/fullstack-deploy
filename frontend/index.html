@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Frontend</title>
+</head>
+<body>
+  <h1>Frontend</h1>
+  <button onclick="callAPI()">Call Backend</button>
+  <pre id="output"></pre>
+
+  <script>
+    async function callAPI() {
+      try {
+        const response = await fetch('http://localhost:3000/api');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        document.getElementById('output').textContent = 'Error: ' + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
+
+
